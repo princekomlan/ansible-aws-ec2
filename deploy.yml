@@ -4,7 +4,7 @@
   become: true
   vars:
     ansible_connection: local
-    ansible_python_interpreter: /usr/bin/python3
+    
 
   pre_tasks:
 
@@ -40,6 +40,11 @@
         - boto
         - boto3
         - botocore
+
+- name: Create a security group for server
+  hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Create a security group for server
       ec2_group:
