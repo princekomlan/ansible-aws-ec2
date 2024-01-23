@@ -18,6 +18,7 @@
         - boto
         - boto3
         - botocore
+        executable: pip-3.7
   tasks:
     # tasks file for deploy-infra
     - name: Create a security group for server
