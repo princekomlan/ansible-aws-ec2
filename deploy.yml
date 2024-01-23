@@ -5,20 +5,40 @@
   vars:
     ansible_connection: local
   pre_tasks:
+    - name: Ensure pip is installed
+      raw: "python3 -m ensurepip"
+      args:
+        creates: /usr/bin/pip3
+
+    - name: Upgrade pip
+      pip:
+        name: pip
+        state: latest
+
     - name: Install EPEL repo
-      package: name=epel-release state=present
+      package:
+        name: epel-release
+        state: present
       when: ansible_distribution == "CentOS"
+
     - name: Install Python3
-      yum: name=python3 state=present update_cache=yes
-    - name: install python3-pip
-      yum: name=python3-pip state=present update_cache=yes
+      yum:
+        name: python3
+        state: present
+        update_cache: yes
+
+    - name: Install python3-pip
+      yum:
+        name: python3-pip
+        state: present
+        update_cache: yes
+
     - name: Install boto stuff
-      pip: name="{{ item }}"
+      command: pip-3.7 install {{ item }}
       with_items:
         - boto
         - boto3
         - botocore
-      executable: pip-3.7
   tasks:
     - name: Create a security group for server
       ec2_group:
