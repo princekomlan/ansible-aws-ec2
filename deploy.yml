@@ -41,7 +41,7 @@
         - boto3
         - botocore
 
-- name: Create a security group for server
+- name: Server Creation Process
   hosts: localhost
   vars:
     ansible_python_interpreter: /usr/bin/python3
