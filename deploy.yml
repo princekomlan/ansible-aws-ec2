@@ -23,16 +23,14 @@
         name: python3-pip
         state: present
         update_cache: yes
-        
+
     - name: Ensure pip is installed
       raw: "python3 -m ensurepip"
       args:
         creates: /usr/bin/pip3
 
     - name: Upgrade pip
-      pip:
-        name: pip
-        state: latest
+      command: pip install --upgrade pip
 
     - name: Install boto stuff
       command: pip-3.7 install {{ item }}
