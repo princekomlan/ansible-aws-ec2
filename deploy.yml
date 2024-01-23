@@ -8,8 +8,10 @@
     - name: Install EPEL repo
       package: name=epel-release state=present
       when: ansible_distribution == "CentOS"
-    - name: install python-pip
-      yum: name=python-pip state=present update_cache=yes
+    - name: Install Python3
+      yum: name=python3 state=present update_cache=yes
+    - name: install python3-pip
+      yum: name=python3-pip state=present update_cache=yes
     - name: Install boto stuff 
       pip: name="{{ item }}"
       with_items:
