@@ -35,7 +35,7 @@
       command: pip3 install --upgrade pip
 
     - name: Install boto stuff
-      command: pip install {{ item }}
+      command: pip3 install {{ item }}
       with_items:
         - boto
         - boto3
